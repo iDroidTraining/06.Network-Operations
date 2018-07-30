@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">URLConnection</string>
+    <string name="email_address">Email Address</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="register_new_account">Register new account</string>
+    <string name="place_holder_demo_text">Demo Text Place Holder</string>
+    <string name="register_new_user">Register New User</string>
+    <string name="name">Name</string>
+    <string name="email">Email</string>
+    <string name="register">Register</string>
+    <string name="error_getting_response">That didn\'t work!</string>
+</resources>

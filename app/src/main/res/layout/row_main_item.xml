@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/item_high"
+    android:orientation="vertical"
+    android:layout_margin="@dimen/layout_margin"
+    android:padding="@dimen/layout_padding">
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/row_title"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_centerInParent="true"
+        android:background="@color/white"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        tools:text="@string/place_holder_demo_text"/>
+
+</RelativeLayout>
