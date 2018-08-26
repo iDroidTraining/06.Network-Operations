@@ -7,7 +7,7 @@ import java.net.*;
 
 import javax.net.ssl.HttpsURLConnection;
 
-import ws.idroid.urlconnection.constants.Constants;
+import ws.idroid.urlconnection.BuildConfig;
 
 public class NetworkUtil {
     public static String makeServiceCall(String requestURL) {
@@ -52,7 +52,7 @@ public class NetworkUtil {
             e.printStackTrace();
         }
 
-        Log.i(Constants.TAG, ">>>Response - >" + response);
+        Log.i(BuildConfig.TAG, ">>>Response - >" + response);
         return response;
     }
 
