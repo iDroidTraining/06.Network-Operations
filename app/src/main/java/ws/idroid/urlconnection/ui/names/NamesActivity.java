@@ -10,8 +10,7 @@ import org.json.*;
 
 import java.util.*;
 
-import ws.idroid.urlconnection.R;
-import ws.idroid.urlconnection.constants.Constants;
+import ws.idroid.urlconnection.*;
 import ws.idroid.urlconnection.model.User;
 import ws.idroid.urlconnection.util.NetworkUtil;
 
@@ -27,12 +26,12 @@ public class NamesActivity extends AppCompatActivity {
         private List<User> namesList = new ArrayList<>();
         private User user = null;
         private int i;
-        private String url = Constants.URL_PREFIX + "getUsers.php";
+        private String url = BuildConfig.SERVER_URL_PREFIX + "getUsers.php";
 
         @Override
         protected Void doInBackground(Void... arg0) {
             try {
-                Log.i(Constants.TAG, "Request Url  = " + url);
+                Log.i(BuildConfig.TAG, "Request Url  = " + url);
                 String jsonResult;
                 try {
                     jsonResult = NetworkUtil.makeServiceCall(url);
@@ -47,6 +46,7 @@ public class NamesActivity extends AppCompatActivity {
                         user.setId(jsonUser.getString("id"));
                         user.setName(jsonUser.getString("name"));
                         user.setEmail(jsonUser.getString("email"));
+
                         namesList.add(user);
                     }
                     return null;
@@ -62,17 +62,17 @@ public class NamesActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(Void result) {
-            LinearLayout L = findViewById(R.id.linear);
-            if (namesList.size() > 0) {
+            LinearLayout linearLayout = findViewById(R.id.linear);
+
                 for (i = 0; i < namesList.size(); i++) {
                     View view = getLayoutInflater()
                             .inflate(R.layout.row_main_item, null);
-                    TextView name = view.findViewById(R.id.row_title);
-                    name.setText(String.format("%s ) %s", namesList.get(i).getId(), namesList.get
+                    TextView tvName = view.findViewById(R.id.row_title);
+                    tvName.setText(String.format("%s ) %s", namesList.get(i).getId(), namesList.get
                             (i).getName()));
-                    L.addView(view);
+                    linearLayout.addView(view);
                 }
-            }
+
         }
 
     }

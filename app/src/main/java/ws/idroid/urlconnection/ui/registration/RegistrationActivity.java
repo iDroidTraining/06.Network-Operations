@@ -10,8 +10,7 @@ import android.widget.*;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
-import ws.idroid.urlconnection.R;
-import ws.idroid.urlconnection.constants.Constants;
+import ws.idroid.urlconnection.*;
 import ws.idroid.urlconnection.ui.names.NamesActivity;
 import ws.idroid.urlconnection.util.NetworkUtil;
 
@@ -27,12 +26,13 @@ public class RegistrationActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
-        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-        StrictMode.setThreadPolicy(policy);
+//        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll()
+// .build();
+//        StrictMode.setThreadPolicy(policy);
+
         initViews();
         initListeners();
         initProgressBar();
-
     }
 
     private void initProgressBar() {
@@ -58,9 +58,10 @@ public class RegistrationActivity extends AppCompatActivity {
         btnRegister = findViewById(R.id.btn_submit);
     }
 
-    private class RegistrationTask extends AsyncTask<Void, Void, Void> {
-        private String url = Constants.URL_PREFIX + "register.php?";
+    private class RegistrationTask extends AsyncTask<Void, Void, Boolean> {
+        private String url = BuildConfig.SERVER_URL_PREFIX + "register.php?";
         private String Parameters;
+
 
         @Override
         protected void onPreExecute() {
@@ -81,21 +82,23 @@ public class RegistrationActivity extends AppCompatActivity {
         }
 
         @Override
-        protected Void doInBackground(Void... arg0) {
+        protected Boolean doInBackground(Void... arg0) {
             Log.i("URL ", "URL  = " + url);
-            String jsonStr = "";
+            String jsonStr;
             try {
                 jsonStr = NetworkUtil.makeServiceCall(url);
             } catch (Exception e) {
                 // TODO: handle exception
                 e.printStackTrace();
+                return false;
+
             }
             Log.i("Server Response ", jsonStr);
-            return null;
+            return true;
         }
 
         @Override
-        protected void onPostExecute(Void result) {
+        protected void onPostExecute(Boolean result) {
             progressBar.setVisibility(View.GONE);
 
             Toast.makeText(RegistrationActivity.this, "Your information has been submitted " +

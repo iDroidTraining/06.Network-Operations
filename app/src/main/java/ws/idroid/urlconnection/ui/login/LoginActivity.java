@@ -9,8 +9,7 @@ import android.widget.*;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
-import ws.idroid.urlconnection.R;
-import ws.idroid.urlconnection.constants.Constants;
+import ws.idroid.urlconnection.*;
 import ws.idroid.urlconnection.ui.names.NamesActivity;
 import ws.idroid.urlconnection.ui.registration.RegistrationActivity;
 import ws.idroid.urlconnection.util.NetworkUtil;
@@ -39,7 +38,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private class LoginTask extends AsyncTask<Void, Void, String> {
-        private String url = Constants.URL_PREFIX + "login.php?";
+        private String url = BuildConfig.SERVER_URL_PREFIX + "login.php?";
         private String Parameters;
 
         @Override
@@ -56,14 +55,14 @@ public class LoginActivity extends AppCompatActivity {
 
         @Override
         protected String doInBackground(Void... arg0) {
-            Log.i(Constants.TAG, "Request Url  = " + url);
+            Log.i(BuildConfig.TAG, "Request Url  = " + url);
             String jsonStr = "";
             try {
                 jsonStr = NetworkUtil.makeServiceCall(url);
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            Log.i(Constants.TAG, jsonStr);
+            Log.i(BuildConfig.TAG, jsonStr);
 
             if (jsonStr != null) {
                 return jsonStr;

@@ -19,8 +19,8 @@ public class NetworkUtil {
             url = new URL(requestURL);
 
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-            conn.setReadTimeout(15000);
             conn.setConnectTimeout(15000);
+            conn.setReadTimeout(15000);
             conn.setRequestMethod("GET");
             conn.setDoInput(true);
             conn.setDoOutput(true);
@@ -32,6 +32,8 @@ public class NetworkUtil {
             writer.flush();
             writer.close();
             os.close();
+
+
             int responseCode = conn.getResponseCode();
 
             if (responseCode == HttpsURLConnection.HTTP_OK) {

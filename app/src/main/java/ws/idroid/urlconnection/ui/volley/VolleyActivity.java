@@ -7,8 +7,8 @@ import android.widget.TextView;
 import com.android.volley.*;
 import com.android.volley.toolbox.*;
 
+import ws.idroid.urlconnection.BuildConfig;
 import ws.idroid.urlconnection.R;
-import ws.idroid.urlconnection.constants.Constants;
 
 public class VolleyActivity extends AppCompatActivity {
 
@@ -24,7 +24,7 @@ public class VolleyActivity extends AppCompatActivity {
 
     private void makeVolleyRequest() {
         RequestQueue queue = Volley.newRequestQueue(this);
-        String url = Constants.URL_PREFIX + "getCourseName.php";
+        String url = BuildConfig.SERVER_URL_PREFIX + "getCourseName.php";
         // Request a string response from the provided URL.
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 response -> {

@@ -1,5 +1,7 @@
 apply plugin: 'com.android.application'
-
+def serverUrl = "SERVER_URL_PREFIX"
+def tag = "TAG"
+def config = { k -> "\"${project.properties.get(k)}\"" }
 android {
     compileSdkVersion 27
     defaultConfig {
@@ -14,6 +16,14 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            buildConfigField "String", serverUrl, config("release.server.url")
+            buildConfigField "String", tag, config("debug.tag")
+
+        }
+        debug {
+            buildConfigField "String", serverUrl, config("debug.server.url")
+            buildConfigField "String", tag, config("debug.tag")
+
         }
     }
     compileOptions {
